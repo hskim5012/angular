@@ -1,0 +1,6 @@
+---
+applications:
+- name: angular-testing-demo
+  buildpacks:
+    - https://github.com/cloudfoundry/staticfile-buildpack
+  stack: cflinuxfs3

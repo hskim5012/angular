@@ -1,0 +1,60 @@
+---
+resources:
+- name: source-code
+  type: git
+  source:
+    uri: https://bitbucket.mckesson.com:8443/scm/~e126cr6/angular.git
+    branch: master
+    username: ((bitbucket-qa-user))
+    password: ((bitbucket-qa-pass))
+- name: cloud-foundry
+  type: cf
+  source:
+    api: https://api.sys.dev-west.paas.mckesson.com
+    username: ((dev-pcf-user))
+    password: ((dev-pcf-pass))
+    organization: Pharma-AccessHealth
+    space: dev-pp
+    skip_cert_check: true
+#
+jobs:
+- name: build-and-deploy
+  public: true
+  plan:
+
+  - get: source-code
+    trigger: true
+  - task: express-dependency-install
+    config:
+      platform: linux
+      image_resource:
+         type: docker-image
+         source: {repository: markadams/chromium-xvfb-js, tag: latest}
+      inputs:
+      - name: source-code
+      outputs:
+      - name: install-results
+      - name: cloud-foundry
+      run:
+        path: /bin/bash
+        args:
+        - -exc
+        - |
+          cd source-code/ngUnitTestingDemo
+          npm install
+          npm run build
+          npm test
+          #copy individual files
+          cp package.json ../../cloud-foundry
+          #recursively copy folders
+          cp -R CI ../../cloud-foundry
+          cp CI/manifest/manifest-dev.yml ../../cloud-foundry
+          cp .cfignore ../../cloud-foundry
+          cp -R node_modules ../../cloud-foundry
+          cp -R dist/angular-test/*.* ../../cloud-foundry
+  - put: cloud-foundry
+    params:
+     manifest: cloud-foundry/manifest-dev.yml
+     path: cloud-foundry
+
+
