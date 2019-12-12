@@ -10,6 +10,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ContactmanagerAppComponent } from './contactmanager-app.component';
 import { ContactManagerRoutingModule } from './contactmanager-routing.module';
 import { UserService } from './services/user.service';
+import { NotesComponent } from './components/notes/notes.component';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { UserService } from './services/user.service';
     ToolbarComponent,
     SidenavComponent,
     MainContentComponent,
+    NotesComponent,
   ],
   imports: [
     CommonModule,

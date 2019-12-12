@@ -24,7 +24,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from "@angular/material/sidenav";
-
+import { MatTabsModule } from "@angular/material";
 
 @NgModule({
   imports: [
@@ -51,7 +51,8 @@ import { MatSidenavModule } from "@angular/material/sidenav";
     ReactiveFormsModule,
     MatCheckboxModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTabsModule
   ],
   exports: [
     CommonModule,
@@ -77,7 +78,8 @@ import { MatSidenavModule } from "@angular/material/sidenav";
     ReactiveFormsModule,
     MatCheckboxModule,
     MatIconModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatTabsModule,
   ]
 })
 export class MaterialModule {}

@@ -20,8 +20,11 @@ export class MainContentComponent implements OnInit {
       const id = params.id;
 
       this.userService.users.subscribe(users => {
-        if (users.length == 0) { return; }
-        this.user = this.userService.userById(id);
+        if (users.length === 0) { return; }
+
+        setTimeout(() => {
+          this.user = this.userService.userById(id);
+        }, 500);
       });
     });
   }
