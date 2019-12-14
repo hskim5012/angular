@@ -6,10 +6,11 @@ import {
   MatSelectModule,
   MatOptionModule,
   MatInputModule,
-  MatDatepickerModule,
   MatAutocompleteModule,
-  MatRadioModule
-} from '@angular/material';
+  MatRadioModule,
+  MatSortModule,
+  MatNativeDateModule
+} from "@angular/material";
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatDividerModule } from '@angular/material/divider';
@@ -24,7 +25,10 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from "@angular/material/icon";
 import { MatSidenavModule } from "@angular/material/sidenav";
-import { MatTabsModule } from "@angular/material";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatSnackBarModule } from "@angular/material/snack-bar";
+
 
 @NgModule({
   imports: [
@@ -52,7 +56,11 @@ import { MatTabsModule } from "@angular/material";
     MatCheckboxModule,
     MatIconModule,
     MatSidenavModule,
-    MatTabsModule
+    MatTabsModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
   exports: [
     CommonModule,
@@ -80,6 +88,10 @@ import { MatTabsModule } from "@angular/material";
     MatIconModule,
     MatSidenavModule,
     MatTabsModule,
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatSnackBarModule
   ]
 })
 export class MaterialModule {}

@@ -1,10 +1,9 @@
-import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs';
 import { User } from '../../models/user';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
-import { MatSidenav } from '@angular/material';
 
 
 const SMALL_WIDTH_BREAKPOINT = 720;
@@ -18,7 +17,6 @@ export class SidenavComponent implements OnInit {
   // private mediaMatcher: MediaQueryList = matchMedia(`(max-width: ${SMALL_WIDTH_BREAKPOINT}px)`);
 
   users: Observable<User[]>;
-  @ViewChild('drawer', {static: true}) drawer: MatSidenav;
 
   constructor(zone: NgZone, private _userService: UserService, private _breakpointoObserver: BreakpointObserver
     ,         private router: Router
@@ -37,15 +35,9 @@ export class SidenavComponent implements OnInit {
         this.router.navigate(['/contactmanager', data[0].id]);
       }
     });
-
-    this.router.events.subscribe(() => {
-      if(this.isScreenSmall()) {
-        this.drawer.close();
-      }
-    });
   }
 
   isScreenSmall(): boolean {
-    return this._breakpointoObserver.isMatched([ Breakpoints.XSmall, Breakpoints.Small]);
+    return this._breakpointoObserver.isMatched([ Breakpoints.Small, Breakpoints.XSmall]);
   }
 }
