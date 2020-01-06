@@ -1,0 +1,2 @@
+export { Company } from './company';
+
